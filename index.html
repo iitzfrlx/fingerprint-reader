@@ -1,0 +1,139 @@
+<!--
+<:^p
+<:^p
+  this code is mostly ai since i haven't bothered to fully learn html,
+  and im only doing it to learn github instead
+<:^p
+<:^p
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Fingerprint reader</title>
+
+  <style>
+    body {
+      background: darkgray;
+      font-family: "Comic Relief";
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+      margin: auto;
+    }
+
+    .card {
+      border-radius: 10px;
+      width: 400px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      margin-top: 5%;
+      margin-bottom: 5%;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: "Comic Relief";
+      background: linear-gradient(#B17BFF, #240048);
+    }
+
+    h1 {
+      margin-bottom: 15px;
+    }
+
+    p {
+      margin: 6px 0;
+    }
+
+    #consentBox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #consent {
+      background: gray;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+    }
+
+    button {
+      margin: 5px 0;
+      width: 100%;
+      padding: 8px;
+      border: 0;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .yes {
+      color: #000;
+    }
+
+    .no {
+      background: #444;
+      color: #eee;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="card">
+    <h2>yummy fingerprints</h2>
+    <div id="info">N/A</div>
+  </div>
+
+  <div id="consentBox">
+    <div id="consent">
+      <p>can i read ur fingerprint plz :p</p>
+      <button class="yes" onclick="accept()">(yes) I hereby provide my full, explicit, and unequivocal consent to
+        proceed.</button>
+      <button class="no" onclick="decline()">(no) nuh uh, i don't like you >:^(</button>
+    </div>
+  </div>
+
+  <script>
+    function accept() {
+      document.getElementById("consentBox").style.display = "none";
+
+      const os = navigator.userAgent.includes("Win") ? "Windows" :
+        navigator.userAgent.includes("Mac") ? "macOS" :
+          navigator.userAgent.includes("Linux") ? "Linux" :
+            navigator.userAgent.includes("Android") ? "Android" :
+              navigator.userAgent.includes("iPhone") ? "iOS" : "Unknown";
+
+      const ua = navigator.userAgent;
+      const browser =
+        ua.includes("Firefox") ? "Firefox" :
+          ua.includes("Edg") ? "Edge" :
+            (ua.includes("Chrome") && !ua.includes("Edg")) ? "Chrome" :
+              ua.includes("Safari") ? "Safari" : "Unknown";
+
+      const lang = navigator.language;
+      const screenSize = screen.width + "×" + screen.height;
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+      document.getElementById("info").innerHTML = `
+    OS: ${os}<br>
+    Browser: ${browser}<br>
+    Language: ${lang}<br>
+    Screen: ${screenSize}<br>
+    Timezone: ${tz}
+  `;
+    }
+
+    function decline() {
+      document.getElementById("consentBox").style.display = "none";
+      document.getElementById("info").innerHTML = "You said no. No info collected.";
+    }
+  </script>
+
+</body>
+
+</html>
